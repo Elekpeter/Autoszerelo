@@ -1,0 +1,34 @@
+﻿<Window x:Class="AdministratorClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdministratorClient"
+        mc:Ignorable="d"
+        Title="Adminisztrátor" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="tbUser" HorizontalAlignment="Left" Height="23" Margin="124,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox Name="tbType" HorizontalAlignment="Left" Height="23" Margin="124,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="tbLicensePlate" HorizontalAlignment="Left" Height="23" Margin="124,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="tbProblem" HorizontalAlignment="Left" Height="23" Margin="124,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Ügyfél neve:" HorizontalAlignment="Left" Margin="32,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.36,-0.118"/>
+        <Label Content="Autó típusa:" HorizontalAlignment="Left" Margin="32,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.36,-0.118"/>
+        <Label Content="Rendszám:" HorizontalAlignment="Left" Margin="32,135,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.36,-0.118"/>
+        <Label Content="Hiba leírása:" HorizontalAlignment="Left" Margin="32,170,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.36,-0.118"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="669,357,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label Name="userError" HorizontalAlignment="Left" Margin="260,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.127,-0.428" Foreground="Red"/>
+        <Label Name="typeError" HorizontalAlignment="Left" Margin="260,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.127,-0.428" Foreground="Red"/>
+        <Label Name="licensePlateError" HorizontalAlignment="Left" Margin="260,138,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.127,-0.428" Foreground="Red"/>
+        <Label Name="problemError" HorizontalAlignment="Left" Margin="260,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.127,-0.428" Foreground="Red"/>
+        <ListView Name="WorkList" HorizontalAlignment="Left" Height="257" Margin="351,67,0,0" VerticalAlignment="Top" Width="422" SelectionChanged="WorkList_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Ügyfél neve" DisplayMemberBinding="{Binding UserName}" Width="Auto"/>
+                    <GridViewColumn Header="Autó típusa" DisplayMemberBinding="{Binding Type}" Width="Auto"/>
+                    <GridViewColumn Header="Rendszám" DisplayMemberBinding="{Binding LicensePlate}" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="Update"  Content="Meglévő frissítése" HorizontalAlignment="Left" Margin="529,357,0,0" VerticalAlignment="Top" Width="120" Click="Update_Click"/>
+    </Grid>
+</Window>
