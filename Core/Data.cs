@@ -13,10 +13,12 @@ namespace Core
         public string LicensePlate { get; set; }
         public string Problem  { get; set; }
         public DateTime Date { get; private set; }
+        public string Status { get; set; }
 
         public Data()
         {
             Date = DateTime.Now;
+            Status = WorkStatus.FelvettMunka;
         }
 
         public Data(string userName, string type, string licensePlate, string problem)
@@ -26,6 +28,7 @@ namespace Core
             LicensePlate = licensePlate;
             Problem = problem;
             Date = DateTime.Now;
+            Status = WorkStatus.FelvettMunka;
         }
     }
 }

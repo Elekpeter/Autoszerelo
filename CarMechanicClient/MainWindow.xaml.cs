@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,30 @@ namespace CarMechanicClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Data> dataList = new List<Data>();
         public MainWindow()
         {
             InitializeComponent();
+            WorkList.ItemsSource = dataList;
+
+            StatusList.Items.Add(WorkStatus.FelvettMunka);
+            StatusList.Items.Add(WorkStatus.ElvegzesAlatt);
+            StatusList.Items.Add(WorkStatus.Befejezett);
+        }
+
+        private void WorkList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //switch (((Data)WorkList.SelectedItem).Status)
+            //{
+            //    case WorkStatus.FelvettMunka:
+            //        StatusList.Te = 
+            //    case 
+
+            //    default:
+            //        break;
+            //}  
+
+            StatusList.Text = ((Data)WorkList.SelectedItem).Status;
         }
     }
 }
