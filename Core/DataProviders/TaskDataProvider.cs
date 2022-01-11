@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 
-namespace AdministratorClient.DataProviders
+namespace Core.DataProviders
 {
     public class TaskDataProvider
     {
