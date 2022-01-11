@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Core
+namespace Core.Models
 {
-    public class Data
+    public class Task
     {
+        public int Id { get; set; }
         public string UserName { get; set; }
         public string Type { get; set; }
         public string LicensePlate { get; set; }
-        public string Problem  { get; set; }
+        public string Problem { get; set; }
         public DateTime Date { get; private set; }
         public string Status { get; set; }
 
-        public Data()
+        public Task()
         {
             Date = DateTime.Now;
             Status = WorkStatus.FelvettMunka;
         }
 
-        public Data(string userName, string type, string licensePlate, string problem)
+        public Task(string userName, string type, string licensePlate, string problem)
         {
             UserName = userName;
             Type = type;

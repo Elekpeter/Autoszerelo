@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{0d3deb08-bbfb-4533-9ccc-f9312865810c}</Project>
+      <Project>{D30B2AEE-EC37-4597-A092-318564887D58}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>

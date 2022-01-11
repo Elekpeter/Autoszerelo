@@ -1,20 +1,12 @@
-﻿using Core;
-using System;
+﻿using AdministratorClient.DataProviders;
+using Core.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AdministratorClient
 {
@@ -23,12 +15,10 @@ namespace AdministratorClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Data> dataList = new List<Data>(); 
-
         public MainWindow()
         {
             InitializeComponent();
-            WorkList.ItemsSource = dataList;
+            UpdateTaskListItems();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -43,8 +33,8 @@ namespace AdministratorClient
 
             if(userError.Content == null && typeError.Content == null && licensePlateError.Content == null && problemError.Content == null)
             {
-                dataList.Add(new Data(tbUser.Text, tbType.Text, tbLicensePlate.Text, tbProblem.Text));
-                WorkList.Items.Refresh();
+                TaskDataProvider.CreateTask(new Task(tbUser.Text, tbType.Text, tbLicensePlate.Text, tbProblem.Text));
+                UpdateTaskListItems();
 
                 CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(WorkList.ItemsSource);
                 view.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Ascending));
@@ -54,6 +44,11 @@ namespace AdministratorClient
                 tbLicensePlate.Text = null;
                 tbProblem.Text = null;
             }
+        }
+
+        private void UpdateTaskListItems()
+        {
+            WorkList.ItemsSource = TaskDataProvider.GetTasks().ToList();
         }
 
         public string IsValidUser(string user)
@@ -122,17 +117,19 @@ namespace AdministratorClient
 
         private void WorkList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = (Data)WorkList.SelectedItem;
+            var selectedItem = (Task)WorkList.SelectedItem;
             tbUser.Text = selectedItem.UserName;
             tbType.Text = selectedItem.Type;
             tbLicensePlate.Text = selectedItem.LicensePlate;
             tbProblem.Text = selectedItem.Problem;
+
+            UpdateTaskListItems();
         }
 
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (Data)WorkList.SelectedItem;
+            var selectedItem = (Task)WorkList.SelectedItem;
             selectedItem.UserName = tbUser.Text;
             selectedItem.Type = tbType.Text;
             selectedItem.LicensePlate = tbLicensePlate.Text;

@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace CarMechanicClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Data> dataList = new List<Data>();
+        public List<Core.Models.Task> dataList = new List<Core.Models.Task>();
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace CarMechanicClient
             //        break;
             //}  
 
-            StatusList.Text = ((Data)WorkList.SelectedItem).Status;
+            StatusList.Text = ((Core.Models.Task)WorkList.SelectedItem).Status;
         }
     }
 }
