@@ -28,17 +28,26 @@ namespace CarMechanicClient
 
         private void WorkList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //switch (((Data)WorkList.SelectedItem).Status)
-            //{
-            //    case WorkStatus.FelvettMunka:
-            //        StatusList.Te = 
-            //    case 
+            var selectedItem = (Task)WorkList.SelectedItem;
 
-            //    default:
-            //        break;
-            //}  
+            if (selectedItem != null)
+            {
+                StatusList.Text = selectedItem.Status;
+            }
+        }
 
-            StatusList.Text = ((Core.Models.Task)WorkList.SelectedItem).Status;
+        private void StatusList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            var selectedItem = (Task)WorkList.SelectedItem;
+            
+            if (selectedItem != null && selectedItem.Status != StatusList.SelectedItem.ToString())
+            {
+                selectedItem.Status = StatusList.SelectedItem.ToString();
+                TaskDataProvider.UpdateTask(selectedItem);
+
+                UpdateTaskListItems();
+            }
         }
     }
 }

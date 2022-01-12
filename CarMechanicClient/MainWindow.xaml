@@ -16,7 +16,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ComboBox Name="StatusList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="83,102,0,0"/>
+        <ComboBox Name="StatusList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="83,102,0,0" SelectionChanged="StatusList_SelectionChanged"/>
 
     </Grid>
 </Window>
