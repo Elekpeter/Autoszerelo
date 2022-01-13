@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdministratorClient"
         mc:Ignorable="d"
-        Title="Adminisztrátor" Height="450" Width="650">
+        Title="Adminisztrátor" Height="450" Width="1100">
     <Grid>
         
         <Grid.RowDefinitions>
@@ -27,6 +27,7 @@
                     <GridViewColumn Header="Ügyfél neve" DisplayMemberBinding="{Binding UserName}" Width="250"/>
                     <GridViewColumn Header="Autó típusa" DisplayMemberBinding="{Binding Type}" Width="200"/>
                     <GridViewColumn Header="Rendszám" DisplayMemberBinding="{Binding LicensePlate}" Width="100"/>
+                    <GridViewColumn Header="Hiba" DisplayMemberBinding="{Binding Problem}" Width="500"/>
                 </GridView>
             </ListView.View>
         </ListView>

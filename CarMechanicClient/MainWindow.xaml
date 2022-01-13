@@ -25,6 +25,7 @@
             </ListView.View>
         </ListView>
         <ComboBox Name="StatusList" Grid.Column="0" Width="120" Height="30"  Margin="15" SelectionChanged="StatusList_SelectionChanged"/>
+        <Button Content="Táblázat frissítése" HorizontalAlignment="Left" Margin="14,40,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
 
     </Grid>
 </Window>
