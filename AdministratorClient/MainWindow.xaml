@@ -5,18 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdministratorClient"
         mc:Ignorable="d"
-        Title="Adminisztrátor" Height="450" Width="800">
+        Title="Adminisztrátor" Height="450" Width="650">
     <Grid>
         
-        <Button Content="Új munka" HorizontalAlignment="Left" Margin="669,357,0,0" VerticalAlignment="Top" Width="75" Click="New_Click"/>
-        <Button Content="Meglévő frissítése" HorizontalAlignment="Left" Margin="529,357,0,0" VerticalAlignment="Top" Width="120" Click="Update_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <ListView Name="WorkList" HorizontalAlignment="Left" Height="257" Margin="402,64,0,0" VerticalAlignment="Top" Width="322">
+        <Button Content="Új munka" Grid.Row="1" Grid.Column="0" Margin="50" Width="75" Click="New_Click"/>
+        <Button Name ="UpdateButton" Content="Meglévő frissítése" Grid.Row="1" Grid.Column="1" Margin="50" Width="120" Click="Update_Click"/>
+
+        <ListView Name="WorkList" Grid.Row="0" Margin="15" Grid.ColumnSpan="2" SelectionChanged="WorkList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Ügyfél neve" DisplayMemberBinding="{Binding UserName}" Width="Auto"/>
-                    <GridViewColumn Header="Autó típusa" DisplayMemberBinding="{Binding Type}" Width="Auto"/>
-                    <GridViewColumn Header="Rendszám" DisplayMemberBinding="{Binding LicensePlate}" Width="Auto"/>
+                    <GridViewColumn Header="Ügyfél neve" DisplayMemberBinding="{Binding UserName}" Width="250"/>
+                    <GridViewColumn Header="Autó típusa" DisplayMemberBinding="{Binding Type}" Width="200"/>
+                    <GridViewColumn Header="Rendszám" DisplayMemberBinding="{Binding LicensePlate}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>

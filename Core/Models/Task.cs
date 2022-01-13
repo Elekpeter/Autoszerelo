@@ -12,13 +12,11 @@ namespace Core.Models
         public string Type { get; set; }
         public string LicensePlate { get; set; }
         public string Problem { get; set; }
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; set; }
         public string Status { get; set; }
 
         public Task()
         {
-            Date = DateTime.Now;
-            Status = WorkStatus.FelvettMunka;
         }
 
         public Task(string userName, string type, string licensePlate, string problem)

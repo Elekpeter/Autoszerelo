@@ -11,7 +11,7 @@ namespace WebApi_Server.Repositories
         {
             using (var database = new TaskContext())
             {
-                var tasks = database.Tasks.ToList();
+                var tasks = database.Tasks.OrderBy(x => x.Date).ToList();
 
                 return tasks;
             }
@@ -21,7 +21,7 @@ namespace WebApi_Server.Repositories
         {
             using (var database = new TaskContext())
             {
-                var task = database.Tasks.Where(p => p.Id == id).FirstOrDefault();
+                var task = database.Tasks.Where(x => x.Id == id).FirstOrDefault();
 
                 return task;
             }

@@ -18,13 +18,15 @@ namespace AdministratorClient
         {
             InitializeComponent();
             UpdateTaskListItems();
+            UpdateButton.IsEnabled = false;
         }
-
-        
 
         private void UpdateTaskListItems()
         {
             WorkList.ItemsSource = TaskDataProvider.GetTasks().ToList();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(WorkList.ItemsSource);
+            view.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Ascending));
         }
 
         private void New_Click(object sender, RoutedEventArgs e)
@@ -47,8 +49,18 @@ namespace AdministratorClient
                     UpdateTaskListItems();
                 }
             }
+        }
 
-            
+        private void WorkList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(WorkList.SelectedItem == null)
+            {
+                UpdateButton.IsEnabled = false;
+            }
+            else
+            {
+                UpdateButton.IsEnabled = true;
+            }
         }
     }
 }

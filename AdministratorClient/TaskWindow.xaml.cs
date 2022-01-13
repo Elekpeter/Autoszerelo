@@ -13,6 +13,7 @@ namespace AdministratorClient
     public partial class TaskWindow : Window
     {
         private readonly Task _task;
+        private bool IsNew;
 
         public TaskWindow(Task task)
         {
@@ -20,6 +21,7 @@ namespace AdministratorClient
             if(task != null)
             {
                 _task = task;
+                IsNew = false;
 
                 tbUser.Text = task.UserName;
                 tbType.Text = task.Type;
@@ -28,34 +30,35 @@ namespace AdministratorClient
             }
             else
             {
+                IsNew = true;
                 _task = new Task();
             }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            userError.Content = IsValidUser(tbUser.Text);
-
-            typeError.Content = IsValidType(tbType.Text);
-
-            licensePlateError.Content = IsValidLicensePlate(tbLicensePlate.Text);
-
-            problemError.Content = IsValidProblem(tbProblem.Text);
-
-            if (userError.Content == null && typeError.Content == null && licensePlateError.Content == null && problemError.Content == null)
+            if (IsAllValid())
             {
-                TaskDataProvider.CreateTask(new Task(tbUser.Text, tbType.Text, tbLicensePlate.Text, tbProblem.Text));
+                if (IsNew)
+                {
+                    TaskDataProvider.CreateTask(new Task(tbUser.Text, tbType.Text, tbLicensePlate.Text, tbProblem.Text));
+                }
+                else
+                {
+                    _task.UserName = tbUser.Text;
+                    _task.Type = tbType.Text;
+                    _task.LicensePlate = tbLicensePlate.Text;
+                    _task.Problem = tbProblem.Text;
 
-                //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(WorkList.ItemsSource);
-                //view.SortDescriptions.Add(new SortDescription("Date", ListSortDirection.Ascending));
+                    TaskDataProvider.UpdateTask(_task);
+                }
 
                 DialogResult = true;
                 Close();
             }
         }
         
-
-        private void Update_Click(object sender, RoutedEventArgs e)
+        private bool IsAllValid()
         {
             userError.Content = IsValidUser(tbUser.Text);
 
@@ -67,16 +70,10 @@ namespace AdministratorClient
 
             if (userError.Content == null && typeError.Content == null && licensePlateError.Content == null && problemError.Content == null)
             {
-                _task.UserName = tbUser.Text;
-                _task.Type = tbType.Text;
-                _task.LicensePlate = tbLicensePlate.Text;
-                _task.Problem = tbProblem.Text;
-
-                TaskDataProvider.UpdateTask(_task);
-
-                DialogResult = true;
-                Close();
+                return true;
             }
+
+            return false;
         }
 
 #region validation

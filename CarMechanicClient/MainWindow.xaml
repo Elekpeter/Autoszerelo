@@ -5,18 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarMechanicClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Autószerelő Platform" Height="450" Width="1300">
     <Grid>
-        <ListView Name="WorkList" HorizontalAlignment="Left" Height="257" Margin="351,67,0,0" VerticalAlignment="Top" Width="422" SelectionChanged="WorkList_SelectionChanged">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Name="WorkList" Margin="15" Grid.Column="1" SelectionChanged="WorkList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Ügyfél neve" DisplayMemberBinding="{Binding UserName}" Width="Auto"/>
-                    <GridViewColumn Header="Autó típusa" DisplayMemberBinding="{Binding Type}" Width="Auto"/>
-                    <GridViewColumn Header="Rendszám" DisplayMemberBinding="{Binding LicensePlate}" Width="Auto"/>
+                    <GridViewColumn Header="Ügyfél neve" DisplayMemberBinding="{Binding UserName}" Width="200"/>
+                    <GridViewColumn Header="Autó típusa" DisplayMemberBinding="{Binding Type}" Width="200"/>
+                    <GridViewColumn Header="Rendszám" DisplayMemberBinding="{Binding LicensePlate}" Width="80"/>
+                    <GridViewColumn Header="Státusz" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                    <GridViewColumn Header="Hiba" DisplayMemberBinding="{Binding Problem}" Width="450"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ComboBox Name="StatusList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="83,102,0,0" SelectionChanged="StatusList_SelectionChanged"/>
+        <ComboBox Name="StatusList" Grid.Column="0" Width="120" Height="30"  Margin="15" SelectionChanged="StatusList_SelectionChanged"/>
 
     </Grid>
 </Window>
