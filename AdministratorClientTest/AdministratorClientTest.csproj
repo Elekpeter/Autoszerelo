@@ -66,6 +66,10 @@
       <Project>{78895180-3C9F-4AFC-B655-1DEF2234AED6}</Project>
       <Name>AdministratorClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{D30B2AEE-EC37-4597-A092-318564887D58}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

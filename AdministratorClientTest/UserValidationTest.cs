@@ -7,12 +7,12 @@ namespace AdministratorClientTest
     [TestClass]
     public class UserValidationTest
     {
-        private MainWindow mainWindow = new MainWindow();
+        private TaskWindow taskWindow = new TaskWindow(null);
 
         [TestMethod]
         public void IsValidUser_Empty_ReturnsError()
         {
-            var result = mainWindow.IsValidUser("");
+            var result = taskWindow.IsValidUser("");
             Assert.IsNotNull(result);
             Assert.AreEqual("Nem lehet üres!", result);
         }
@@ -20,14 +20,14 @@ namespace AdministratorClientTest
         [TestMethod]
         public void IsValidUser_Valid_ReturnsOk()
         {
-            var result = mainWindow.IsValidUser("Teszt Elek");
+            var result = taskWindow.IsValidUser("Teszt Elek");
             Assert.IsNull(result);
         }
 
         [TestMethod]
         public void IsValidUser_InValid_ReturnsError()
         {
-            var result = mainWindow.IsValidUser("Teszt-Elek");
+            var result = taskWindow.IsValidUser("Teszt-Elek");
             Assert.AreEqual("Nem használható speciális karakter!", result);
         }
 
